@@ -8,7 +8,7 @@
 #include<string>
 #include<cmath>
 #include<grace_np.h>
-#include<fftw3.h>
+//#include<fftw3.h>
 using namespace std;
 int main(int argc,char *argv[])
 {
@@ -34,6 +34,7 @@ int main(int argc,char *argv[])
     vector<double> va;
     copy(istream_iterator<double>(iss), istream_iterator<double>(), back_inserter(va));
     if(va.size() < 2) break;
+    va[0] *= 0.001; //convert to seconds
     v_pe.push_back(va);
 }
 in1.close();
@@ -59,6 +60,8 @@ for(unsigned int i0=0;i0<v_pe.size();i0++){
     }
 }
 GracePrintf("autoscale");
+GracePrintf("xaxis  label \"Time (Seconds)\"");
+GracePrintf("yaxis  label \"pitch (Radian)\"");
 GracePrintf("xaxis  tick major grid on");
 GracePrintf("redraw");
 GraceFlush();
